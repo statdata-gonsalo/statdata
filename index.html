@@ -1,0 +1,4248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STATDATA Perú | Estadística, Investigación y Asesoría</title>
+
+<meta name="description" content="STATDATA Perú - Estadística, investigación, asesoría académica, tesis, análisis de datos, validez y confiabilidad de instrumentos.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --blue:#2563eb;
+    --blue2:#3b82f6;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --purple:#7c3aed;
+
+    --dark:#07111f;
+    --dark2:#0d1b2e;
+
+    --text:#334155;
+    --muted:#64748b;
+
+    --light:#f5f8fc;
+    --white:#ffffff;
+    --border:#e2e8f0;
+
+    --gradient:linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    --shadow:0 15px 45px rgba(15,23,42,.09);
+
+    --radius:20px;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    color:var(--text);
+    background:white;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+}
+
+.container{
+    width:min(92%,1180px);
+    margin:auto;
+}
+
+section{
+    padding:100px 0;
+}
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:var(--dark);
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.5s;
+}
+
+.loader.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+.loader-box{
+    text-align:center;
+    color:white;
+}
+
+.loader-logo{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.loader-logo span{
+    color:#22d3ee;
+}
+
+.loader-line{
+    width:200px;
+    height:4px;
+    background:#1e293b;
+    border-radius:10px;
+    margin:20px auto;
+    overflow:hidden;
+}
+
+.loader-progress{
+    height:100%;
+    width:0;
+    background:var(--gradient);
+    animation:loading 1.5s forwards;
+}
+
+@keyframes loading{
+    to{width:100%}
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:16px 0;
+    transition:.3s;
+}
+
+.navbar.scrolled{
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(15px);
+    box-shadow:0 5px 30px rgba(15,23,42,.08);
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.navbar.scrolled .logo{
+    color:var(--dark);
+}
+
+.logo-symbol{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:rgba(255,255,255,.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.navbar.scrolled .logo-symbol{
+    background:var(--gradient);
+}
+
+.logo-symbol svg{
+    width:28px;
+}
+
+.logo span{
+    color:#67e8f9;
+}
+
+.navbar.scrolled .logo span{
+    color:var(--blue);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    font-size:13px;
+    font-weight:700;
+}
+
+.navbar.scrolled .nav-links a{
+    color:var(--text);
+}
+
+.nav-links a:hover{
+    color:#22d3ee;
+}
+
+.nav-contact{
+    background:var(--gradient);
+    padding:10px 17px;
+    border-radius:9px;
+    color:white!important;
+}
+
+.menu{
+    display:none;
+    border:none;
+    background:none;
+    color:white;
+    font-size:25px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    color:white;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(6,182,212,.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 85%,
+            rgba(37,99,235,.3),
+            transparent 30%
+        ),
+        var(--dark);
+}
+
+.grid-bg{
+    position:absolute;
+    inset:0;
+    opacity:.06;
+
+    background-image:
+        linear-gradient(#fff 1px,transparent 1px),
+        linear-gradient(90deg,#fff 1px,transparent 1px);
+
+    background-size:45px 45px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 13px;
+
+    border:1px solid rgba(255,255,255,.13);
+    background:rgba(255,255,255,.06);
+
+    border-radius:30px;
+
+    font-size:11px;
+    font-weight:700;
+
+    margin-bottom:25px;
+}
+
+.badge-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 0 15px #22c55e;
+}
+
+.hero h1{
+    font-family:"Plus Jakarta Sans";
+    font-size:clamp(43px,5vw,70px);
+    line-height:1.03;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.gradient{
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #22d3ee
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-description{
+    color:#b4c1d4;
+    max-width:600px;
+    font-size:17px;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:14px 21px;
+    border-radius:10px;
+    font-weight:800;
+    font-size:13px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    transition:.25s;
+}
+
+.btn-primary{
+    color:white;
+    background:var(--gradient);
+    box-shadow:0 12px 30px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-outline{
+    color:white;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.05);
+}
+
+.btn-outline:hover{
+    background:rgba(255,255,255,.1);
+}
+
+/* =========================================================
+   HERO DATA VISUAL
+========================================================= */
+
+.data-dashboard{
+    position:relative;
+}
+
+.dashboard{
+    background:#fff;
+    color:var(--dark);
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 40px 100px rgba(0,0,0,.35);
+
+    animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+.dashboard-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:17px;
+}
+
+.dashboard-title{
+    font-size:12px;
+    font-weight:800;
+}
+
+.live{
+    font-size:9px;
+    background:#dcfce7;
+    color:#16a34a;
+    padding:5px 8px;
+    border-radius:20px;
+}
+
+.analytics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.metric{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:12px;
+}
+
+.metric small{
+    color:#64748b;
+    font-size:8px;
+}
+
+.metric strong{
+    display:block;
+    font-size:18px;
+    margin-top:2px;
+}
+
+.metric .positive{
+    color:#16a34a;
+    font-size:9px;
+}
+
+.chart{
+    height:240px;
+    background:#f8fafc;
+    border-radius:15px;
+    padding:15px;
+    position:relative;
+}
+
+.chart-grid{
+    position:absolute;
+    inset:20px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #e2e8f0 0,
+            #e2e8f0 1px,
+            transparent 1px,
+            transparent 42px
+        );
+}
+
+.chart svg{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100%;
+}
+
+.chart-line{
+    fill:none;
+    stroke:#2563eb;
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+
+    stroke-dasharray:700;
+    stroke-dashoffset:700;
+
+    animation:draw 2s ease forwards;
+}
+
+@keyframes draw{
+    to{stroke-dashoffset:0}
+}
+
+.dot{
+    fill:#06b6d4;
+}
+
+.dashboard-bottom{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+.progress-card{
+    background:#f8fafc;
+    padding:13px;
+    border-radius:12px;
+}
+
+.progress-card small{
+    font-size:9px;
+    color:#64748b;
+}
+
+.progress{
+    height:6px;
+    background:#e2e8f0;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:78%;
+    background:var(--gradient);
+}
+
+/* =========================================================
+   QUICK INFO
+========================================================= */
+
+.quick{
+    background:white;
+    border-bottom:1px solid var(--border);
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.quick-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.quick-icon{
+    width:45px;
+    height:45px;
+    background:#eff6ff;
+    color:var(--blue);
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.quick-item strong{
+    display:block;
+    color:var(--dark);
+    font-size:13px;
+}
+
+.quick-item span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header{
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 55px;
+}
+
+.eyebrow{
+    color:var(--blue);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.section-header h2{
+    font-family:"Plus Jakarta Sans";
+    color:var(--dark);
+    font-size:clamp(30px,4vw,46px);
+    line-height:1.15;
+    letter-spacing:-1.5px;
+    margin-bottom:15px;
+}
+
+.section-header p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    background:var(--light);
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.service{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:27px;
+    cursor:pointer;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.service:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
+}
+
+.service::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:0;
+    height:3px;
+    background:var(--gradient);
+    transition:.3s;
+}
+
+.service:hover::after{
+    width:100%;
+}
+
+.service-icon{
+    width:53px;
+    height:53px;
+    border-radius:14px;
+    background:#eff6ff;
+    color:var(--blue);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:21px;
+    margin-bottom:18px;
+}
+
+.service h3{
+    color:var(--dark);
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.service p{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:17px;
+}
+
+.service-price{
+    color:var(--blue);
+    font-size:12px;
+    font-weight:900;
+}
+
+.service-link{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:700;
+}
+
+/* =========================================================
+   INTERACTIVE ANALYTICS
+========================================================= */
+
+.interactive{
+    background:white;
+}
+
+.analysis-layout{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:55px;
+    align-items:center;
+}
+
+.analysis-text h2{
+    font-family:"Plus Jakarta Sans";
+    color:var(--dark);
+    font-size:40px;
+    line-height:1.15;
+    letter-spacing:-1.5px;
+    margin-bottom:17px;
+}
+
+.analysis-text p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.checks{
+    display:grid;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.check{
+    display:flex;
+    gap:10px;
+    font-size:13px;
+}
+
+.check span:first-child{
+    color:#16a34a;
+}
+
+/* calculator */
+
+.calculator{
+    background:var(--dark);
+    border-radius:25px;
+    padding:30px;
+    color:white;
+    box-shadow:var(--shadow);
+}
+
+.calculator-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.calculator-head h3{
+    font-size:18px;
+}
+
+.calculator-head span{
+    background:rgba(34,211,238,.1);
+    color:#67e8f9;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+}
+
+.data-input{
+    width:100%;
+    min-height:100px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    padding:14px;
+    resize:vertical;
+    background:#122238;
+    color:white;
+    font-size:13px;
+}
+
+.calculate{
+    width:100%;
+    margin-top:12px;
+}
+
+.results{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:15px;
+}
+
+.result{
+    background:#122238;
+    border-radius:12px;
+    padding:12px;
+}
+
+.result small{
+    color:#94a3b8;
+    font-size:8px;
+}
+
+.result strong{
+    display:block;
+    margin-top:4px;
+    font-size:17px;
+    color:#67e8f9;
+}
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process{
+    background:var(--light);
+}
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.process-card{
+    background:white;
+    border:1px solid var(--border);
+    padding:25px;
+    border-radius:18px;
+}
+
+.number{
+    width:42px;
+    height:42px;
+    background:var(--gradient);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    font-weight:900;
+    margin-bottom:18px;
+}
+
+.process-card h3{
+    color:var(--dark);
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.process-card p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================================================
+   PRICES
+========================================================= */
+
+.prices{
+    background:white;
+}
+
+.price-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-card{
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+}
+
+.price-card.featured{
+    border:2px solid var(--blue);
+    box-shadow:var(--shadow);
+    transform:scale(1.03);
+}
+
+.popular{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#eff6ff;
+    color:var(--blue);
+    padding:5px 8px;
+    font-size:9px;
+    font-weight:900;
+    border-radius:20px;
+}
+
+.price-card h3{
+    color:var(--dark);
+    font-size:20px;
+}
+
+.price-card > p{
+    color:var(--muted);
+    font-size:12px;
+    min-height:38px;
+}
+
+.price{
+    color:var(--dark);
+    font-size:37px;
+    font-weight:900;
+    margin:17px 0;
+}
+
+.price small{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.features{
+    list-style:none;
+    display:grid;
+    gap:11px;
+    margin-bottom:25px;
+}
+
+.features li{
+    display:flex;
+    gap:8px;
+    color:var(--text);
+    font-size:12px;
+}
+
+.features li::before{
+    content:"✓";
+    color:#16a34a;
+    font-weight:900;
+}
+
+/* =========================================================
+   PAYMENT
+========================================================= */
+
+.payment{
+    background:var(--dark);
+    color:white;
+}
+
+.payment-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.payment h2{
+    font-family:"Plus Jakarta Sans";
+    font-size:40px;
+    line-height:1.15;
+    margin-bottom:15px;
+}
+
+.payment p{
+    color:#9eacc0;
+    font-size:14px;
+}
+
+.payment-method{
+    background:#101f34;
+    border:1px solid #20334d;
+    border-radius:20px;
+    padding:30px;
+}
+
+.payment-method h3{
+    margin-bottom:20px;
+}
+
+.payment-step{
+    display:flex;
+    gap:13px;
+    margin-bottom:18px;
+}
+
+.payment-step-number{
+    min-width:35px;
+    height:35px;
+    border-radius:10px;
+    background:var(--gradient);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:900;
+}
+
+.payment-step strong{
+    display:block;
+    font-size:13px;
+}
+
+.payment-step span{
+    color:#8e9db0;
+    font-size:11px;
+}
+
+/* =========================================================
+   TOOLS
+========================================================= */
+
+.tools{
+    background:var(--light);
+}
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:14px;
+}
+
+.tool{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:24px 10px;
+    text-align:center;
+    transition:.3s;
+}
+
+.tool:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.tool-icon{
+    font-size:26px;
+    color:var(--blue);
+    margin-bottom:9px;
+}
+
+.tool strong{
+    color:var(--dark);
+    font-size:12px;
+}
+
+/* =========================================================
+   WHY STATDATA
+========================================================= */
+
+.why{
+    background:white;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.why-card{
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px;
+}
+
+.why-card i{
+    width:52px;
+    height:52px;
+    background:#eff6ff;
+    color:var(--blue);
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:17px;
+}
+
+.why-card h3{
+    color:var(--dark);
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.why-card p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials{
+    background:var(--light);
+}
+
+.demo{
+    text-align:center;
+    color:#92400e;
+    background:#fffbeb;
+    border:1px solid #fde68a;
+    padding:10px;
+    border-radius:10px;
+    font-size:11px;
+    max-width:650px;
+    margin:-25px auto 35px;
+}
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.testimonial{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:27px;
+}
+
+.stars{
+    color:#f59e0b;
+    margin-bottom:12px;
+}
+
+.testimonial p{
+    color:var(--text);
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.author{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--gradient);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.author strong{
+    display:block;
+    color:var(--dark);
+    font-size:11px;
+}
+
+.author span{
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote{
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(6,182,212,.2),
+            transparent 25%
+        ),
+        var(--dark);
+    color:white;
+}
+
+.quote-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:60px;
+    align-items:center;
+}
+
+.quote h2{
+    font-family:"Plus Jakarta Sans";
+    font-size:42px;
+    line-height:1.1;
+    margin-bottom:17px;
+}
+
+.quote > .container > div > p{
+    color:#9eacc0;
+    font-size:14px;
+}
+
+.contact-list{
+    display:grid;
+    gap:12px;
+    margin-top:25px;
+}
+
+.contact-list div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:12px;
+    color:#d5deeb;
+}
+
+.contact-list i{
+    color:#67e8f9;
+}
+
+.form{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.group{
+    margin-bottom:14px;
+}
+
+.group label{
+    display:block;
+    color:var(--dark);
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.group input,
+.group select,
+.group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    background:#f8fafc;
+    border-radius:9px;
+    outline:none;
+    font-size:12px;
+}
+
+.group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.group input:focus,
+.group select:focus,
+.group textarea:focus{
+    border-color:var(--blue);
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq{
+    background:white;
+}
+
+.faq-list{
+    max-width:850px;
+    margin:auto;
+}
+
+.faq-item{
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.faq-question{
+    width:100%;
+    border:none;
+    background:white;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-align:left;
+    color:var(--dark);
+    font-weight:800;
+    font-size:13px;
+}
+
+.faq-question span{
+    transition:.3s;
+    color:var(--blue);
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.faq-answer p{
+    padding:0 18px 18px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.faq-item.active .faq-answer{
+    max-height:200px;
+}
+
+.faq-item.active .faq-question span{
+    transform:rotate(45deg);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#050d18;
+    color:white;
+    padding:65px 0 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:45px;
+}
+
+.footer-logo{
+    font-size:23px;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.footer-logo span{
+    color:#22d3ee;
+}
+
+.footer-description{
+    color:#7f8da1;
+    max-width:300px;
+    font-size:12px;
+}
+
+.footer-column h4{
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.footer-column ul{
+    list-style:none;
+    display:grid;
+    gap:9px;
+}
+
+.footer-column a{
+    color:#7f8da1;
+    font-size:11px;
+}
+
+.footer-column a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    border-top:1px solid #182538;
+    padding-top:20px;
+    display:flex;
+    justify-content:space-between;
+    color:#64748b;
+    font-size:10px;
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:59px;
+    height:59px;
+    background:#25d366;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:29px;
+    z-index:900;
+    box-shadow:0 10px 30px rgba(37,211,102,.35);
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.1);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(2,6,23,.78);
+    backdrop-filter:blur(5px);
+    z-index:9999;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(100%,650px);
+    max-height:90vh;
+    overflow:auto;
+
+    background:white;
+    border-radius:22px;
+    padding:32px;
+
+    position:relative;
+
+    animation:modalUp .3s;
+}
+
+@keyframes modalUp{
+    from{
+        transform:translateY(20px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:15px;
+    width:35px;
+    height:35px;
+    border:none;
+    background:#f1f5f9;
+    border-radius:50%;
+    font-size:17px;
+}
+
+.modal-icon{
+    width:55px;
+    height:55px;
+    border-radius:14px;
+    background:#eff6ff;
+    color:var(--blue);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    margin-bottom:18px;
+}
+
+.modal-box h2{
+    color:var(--dark);
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.modal-list{
+    list-style:none;
+    margin:20px 0;
+    display:grid;
+    gap:10px;
+}
+
+.modal-list li{
+    font-size:12px;
+}
+
+.modal-list li::before{
+    content:"✓";
+    color:#16a34a;
+    font-weight:900;
+    margin-right:8px;
+}
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:.7s;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .hero-content,
+    .analysis-layout,
+    .quote-grid,
+    .payment-box{
+        grid-template-columns:1fr;
+    }
+
+    .data-dashboard{
+        max-width:650px;
+        margin:auto;
+    }
+
+    .services-grid,
+    .price-grid,
+    .testimonial-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .process-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tools-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .price-card.featured{
+        transform:none;
+    }
+
+}
+
+@media(max-width:760px){
+
+    section{
+        padding:75px 0;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        left:4%;
+        right:4%;
+        top:70px;
+        background:white;
+        padding:15px;
+        border-radius:15px;
+        box-shadow:var(--shadow);
+        flex-direction:column;
+        align-items:stretch;
+        gap:2px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-links a{
+        color:var(--dark)!important;
+        display:block;
+        padding:11px;
+    }
+
+    .nav-contact{
+        text-align:center;
+        color:white!important;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero{
+        padding:130px 0 70px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .services-grid,
+    .price-grid,
+    .testimonial-grid,
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .tools-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .results{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .payment h2,
+    .quote h2,
+    .analysis-text h2{
+        font-size:32px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .logo{
+        font-size:19px;
+    }
+
+    .logo-symbol{
+        width:36px;
+        height:36px;
+    }
+
+    .dashboard{
+        padding:12px;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     LOADER
+========================================================= -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-box">
+
+        <div class="loader-logo">
+            STAT<span>DATA</span>
+        </div>
+
+        <div class="loader-line">
+            <div class="loader-progress"></div>
+        </div>
+
+        <small>
+            Estadística • Investigación • Datos
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar" id="navbar">
+
+<div class="container nav">
+
+<a href="#inicio" class="logo">
+
+<div class="logo-symbol">
+
+<svg viewBox="0 0 40 40" fill="none">
+
+<path
+d="M6 31L14 22L20 26L34 10"
+stroke="white"
+stroke-width="4"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+
+<path
+d="M27 10H34V17"
+stroke="white"
+stroke-width="4"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+
+</svg>
+
+</div>
+
+STAT<span>DATA</span>
+
+</a>
+
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="#inicio">Inicio</a></li>
+
+<li><a href="#servicios">Servicios</a></li>
+
+<li><a href="#analisis">Análisis</a></li>
+
+<li><a href="#precios">Precios</a></li>
+
+<li><a href="#faq">FAQ</a></li>
+
+<li>
+<a href="#cotizacion" class="nav-contact">
+Cotizar
+</a>
+</li>
+
+</ul>
+
+
+<button class="menu" id="menu">
+
+☰
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="inicio">
+
+<div class="grid-bg"></div>
+
+<div class="container hero-content">
+
+
+<div class="reveal">
+
+<div class="badge">
+
+<span class="badge-dot"></span>
+
+STATDATA-PERÚ
+
+</div>
+
+
+<h1>
+
+Tus datos.
+
+<br>
+
+Nuestro análisis.
+
+<br>
+
+<span class="gradient">
+Mejores decisiones.
+</span>
+
+</h1>
+
+
+<p class="hero-description">
+
+Servicios de estadística, investigación y asesoría
+académica para estudiantes, investigadores y profesionales.
+
+</p>
+
+
+<div class="buttons">
+
+<a href="#cotizacion" class="btn btn-primary">
+
+Solicitar cotización →
+
+</a>
+
+
+<a href="#servicios" class="btn btn-outline">
+
+Explorar servicios
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="data-dashboard reveal">
+
+<div class="dashboard">
+
+<div class="dashboard-head">
+
+<div class="dashboard-title">
+STATDATA / DATA ANALYTICS
+</div>
+
+<div class="live">
+● ONLINE
+</div>
+
+</div>
+
+
+<div class="analytics">
+
+<div class="metric">
+
+<small>MUESTRA</small>
+
+<strong>n</strong>
+
+<span class="positive">
+Datos
+</span>
+
+</div>
+
+<div class="metric">
+
+<small>CORRELACIÓN</small>
+
+<strong>r</strong>
+
+<span class="positive">
+Relación
+</span>
+
+</div>
+
+<div class="metric">
+
+<small>SIGNIFICANCIA</small>
+
+<strong>p</strong>
+
+<span class="positive">
+Análisis
+</span>
+
+</div>
+
+</div>
+
+
+<div class="chart">
+
+<div class="chart-grid"></div>
+
+<svg viewBox="0 0 500 210">
+
+<polyline
+class="chart-line"
+points="
+0,180
+50,165
+100,175
+150,125
+200,140
+250,95
+300,115
+350,65
+400,80
+450,45
+500,25
+"/>
+
+<circle class="dot" cx="100" cy="175" r="5"/>
+<circle class="dot" cx="200" cy="140" r="5"/>
+<circle class="dot" cx="300" cy="115" r="5"/>
+<circle class="dot" cx="400" cy="80" r="5"/>
+<circle class="dot" cx="500" cy="25" r="5"/>
+
+</svg>
+
+</div>
+
+
+<div class="dashboard-bottom">
+
+<div class="progress-card">
+
+<small>CALIDAD DE DATOS</small>
+
+<div class="progress">
+<span></span>
+</div>
+
+</div>
+
+
+<div class="progress-card">
+
+<small>PROCESAMIENTO</small>
+
+<div class="progress">
+<span style="width:91%"></span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK
+========================================================= -->
+
+<section class="quick">
+
+<div class="container quick-grid">
+
+
+<div class="quick-item">
+
+<div class="quick-icon">
+✓
+</div>
+
+<div>
+
+<strong>Trabajo personalizado</strong>
+
+<span>Adaptado a tu proyecto</span>
+
+</div>
+
+</div>
+
+
+<div class="quick-item">
+
+<div class="quick-icon">
+↗
+</div>
+
+<div>
+
+<strong>Resultados claros</strong>
+
+<span>Interpretación comprensible</span>
+
+</div>
+
+</div>
+
+
+<div class="quick-item">
+
+<div class="quick-icon">
+🔒
+</div>
+
+<div>
+
+<strong>Confidencialidad</strong>
+
+<span>Información responsable</span>
+
+</div>
+
+</div>
+
+
+<div class="quick-item">
+
+<div class="quick-icon">
+💬
+</div>
+
+<div>
+
+<strong>Atención directa</strong>
+
+<span>WhatsApp STATDATA</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="services" id="servicios">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+¿Qué hacemos?
+</div>
+
+<h2>
+Soluciones para tus datos e investigación
+</h2>
+
+<p>
+Selecciona un servicio para conocer los detalles.
+</p>
+
+</div>
+
+
+<div class="services-grid">
+
+
+<!-- 1 -->
+
+<div class="service reveal"
+onclick="openService('tareas')">
+
+<div class="service-icon">
+📊
+</div>
+
+<h3>
+Tareas y trabajos estadísticos
+</h3>
+
+<p>
+Ejercicios, análisis, tablas, gráficos e interpretación.
+</p>
+
+<div class="service-price">
+Desde S/ 10
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="service reveal"
+onclick="openService('examenes')">
+
+<div class="service-icon">
+📝
+</div>
+
+<h3>
+Exámenes de Estadística
+</h3>
+
+<p>
+Probabilidad, inferencia, hipótesis, correlación y regresión.
+</p>
+
+<div class="service-price">
+Desde S/ 15
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="service reveal"
+onclick="openService('tesis')">
+
+<div class="service-icon">
+🎓
+</div>
+
+<h3>
+Tesis de Pregrado
+</h3>
+
+<p>
+Acompañamiento estadístico y académico para tu investigación.
+</p>
+
+<div class="service-price">
+Asesoría desde S/ 30
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="service reveal"
+onclick="openService('instrumentos')">
+
+<div class="service-icon">
+🔬
+</div>
+
+<h3>
+Validez y confiabilidad
+</h3>
+
+<p>
+Evaluación estadística de instrumentos de investigación.
+</p>
+
+<div class="service-price">
+Desde S/ 35
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="service reveal"
+onclick="openService('investigacion')">
+
+<div class="service-icon">
+📚
+</div>
+
+<h3>
+Trabajos de investigación
+</h3>
+
+<p>
+Apoyo en metodología, resultados, discusión y APA 7.
+</p>
+
+<div class="service-price">
+Desde S/ 40
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="service reveal"
+onclick="openService('analisis')">
+
+<div class="service-icon">
+📈
+</div>
+
+<h3>
+Análisis estadístico
+</h3>
+
+<p>
+Procesamiento, pruebas estadísticas e interpretación.
+</p>
+
+<div class="service-price">
+Desde S/ 70
+</div>
+
+<div class="service-link">
+Ver detalles →
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     INTERACTIVE ANALYSIS
+========================================================= -->
+
+<section class="interactive" id="analisis">
+
+<div class="container analysis-layout">
+
+
+<div class="analysis-text reveal">
+
+<div class="eyebrow">
+Herramienta interactiva
+</div>
+
+<h2>
+Mira cómo tus datos pueden convertirse en información.
+</h2>
+
+<p>
+Prueba nuestra pequeña calculadora demostrativa.
+Ingresa varios números separados por comas.
+</p>
+
+
+<div class="checks">
+
+<div class="check">
+<span>✓</span>
+Media
+</div>
+
+<div class="check">
+<span>✓</span>
+Mediana
+</div>
+
+<div class="check">
+<span>✓</span>
+Mínimo y máximo
+</div>
+
+<div class="check">
+<span>✓</span>
+Desviación estándar
+</div>
+
+</div>
+
+</div>
+
+
+<div class="calculator reveal">
+
+<div class="calculator-head">
+
+<h3>
+STATDATA DATA TOOL
+</h3>
+
+<span>
+DEMO
+</span>
+
+</div>
+
+
+<textarea
+id="numbersInput"
+class="data-input"
+placeholder="Ejemplo: 12, 15, 18, 20, 25, 30, 31"></textarea>
+
+
+<button
+class="btn btn-primary calculate"
+onclick="calculateData()">
+
+Analizar datos
+
+</button>
+
+
+<div class="results">
+
+<div class="result">
+
+<small>MEDIA</small>
+
+<strong id="mean">
+—
+</strong>
+
+</div>
+
+<div class="result">
+
+<small>MEDIANA</small>
+
+<strong id="median">
+—
+</strong>
+
+</div>
+
+<div class="result">
+
+<small>MÍNIMO</small>
+
+<strong id="min">
+—
+</strong>
+
+</div>
+
+<div class="result">
+
+<small>MÁXIMO</small>
+
+<strong id="max">
+—
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PROCESS
+========================================================= -->
+
+<section class="process">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+¿Cómo trabajamos?
+</div>
+
+<h2>
+Un proceso claro de principio a fin
+</h2>
+
+</div>
+
+
+<div class="process-grid">
+
+
+<div class="process-card reveal">
+
+<div class="number">
+01
+</div>
+
+<h3>
+Recibimos tu proyecto
+</h3>
+
+<p>
+Nos envías tus indicaciones, base de datos,
+instrumento o avance.
+</p>
+
+</div>
+
+
+<div class="process-card reveal">
+
+<div class="number">
+02
+</div>
+
+<h3>
+Revisamos
+</h3>
+
+<p>
+Analizamos objetivos, variables,
+muestra y requerimientos.
+</p>
+
+</div>
+
+
+<div class="process-card reveal">
+
+<div class="number">
+03
+</div>
+
+<h3>
+Procesamos
+</h3>
+
+<p>
+Aplicamos los procedimientos estadísticos
+correspondientes.
+</p>
+
+</div>
+
+
+<div class="process-card reveal">
+
+<div class="number">
+04
+</div>
+
+<h3>
+Entregamos
+</h3>
+
+<p>
+Presentamos resultados claros,
+tablas, gráficos e interpretación.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PRICES
+========================================================= -->
+
+<section class="prices" id="precios">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+Precios base
+</div>
+
+<h2>
+Servicios desde S/ 10
+</h2>
+
+<p>
+Los precios pueden variar según la complejidad,
+cantidad de datos y requerimientos del proyecto.
+</p>
+
+</div>
+
+
+<div class="price-grid">
+
+
+<div class="price-card reveal">
+
+<h3>
+Trabajos
+</h3>
+
+<p>
+Tareas y ejercicios estadísticos.
+</p>
+
+<div class="price">
+S/ 10
+<small>desde</small>
+</div>
+
+<ul class="features">
+
+<li>Ejercicios estadísticos</li>
+<li>Tablas</li>
+<li>Gráficos</li>
+<li>Interpretación</li>
+<li>Resultados revisados</li>
+
+</ul>
+
+<a href="#cotizacion"
+class="btn btn-primary"
+style="width:100%">
+
+Consultar
+
+</a>
+
+</div>
+
+
+<div class="price-card featured reveal">
+
+<div class="popular">
+TESIS
+</div>
+
+<h3>
+Tesis
+</h3>
+
+<p>
+Asesoría y análisis estadístico.
+</p>
+
+<div class="price">
+S/ 30
+<small>desde</small>
+</div>
+
+<ul class="features">
+
+<li>Asesoría desde S/ 30</li>
+<li>Análisis estadístico desde S/ 70</li>
+<li>Paquetes desde S/ 200</li>
+<li>Tablas y gráficos</li>
+<li>Interpretación</li>
+<li>APA 7.ª edición</li>
+
+</ul>
+
+<a href="#cotizacion"
+class="btn btn-primary"
+style="width:100%">
+
+Cotizar tesis
+
+</a>
+
+</div>
+
+
+<div class="price-card reveal">
+
+<h3>
+Investigación
+</h3>
+
+<p>
+Trabajos de investigación universitarios.
+</p>
+
+<div class="price">
+S/ 40
+<small>desde</small>
+</div>
+
+<ul class="features">
+
+<li>Introducción</li>
+<li>Metodología</li>
+<li>Resultados</li>
+<li>Discusión</li>
+<li>Conclusiones</li>
+<li>Recomendaciones</li>
+
+</ul>
+
+<a href="#cotizacion"
+class="btn btn-primary"
+style="width:100%">
+
+Consultar
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAYMENT
+========================================================= -->
+
+<section class="payment">
+
+<div class="container payment-box">
+
+
+<div class="reveal">
+
+<div class="eyebrow" style="color:#67e8f9">
+Modalidad de pago
+</div>
+
+<h2>
+Trabajamos con pago 50/50.
+</h2>
+
+<p>
+Para brindar seguridad y claridad en cada proyecto,
+utilizamos una modalidad de pago dividida.
+</p>
+
+</div>
+
+
+<div class="payment-method reveal">
+
+<h3>
+💳 ¿Cómo funciona?
+</h3>
+
+
+<div class="payment-step">
+
+<div class="payment-step-number">
+1
+</div>
+
+<div>
+
+<strong>
+50% para iniciar
+</strong>
+
+<span>
+Se realiza el primer pago del monto cotizado
+para comenzar el trabajo.
+</span>
+
+</div>
+
+</div>
+
+
+<div class="payment-step">
+
+<div class="payment-step-number">
+2
+</div>
+
+<div>
+
+<strong>
+Desarrollo del proyecto
+</strong>
+
+<span>
+Se procesa y desarrolla el servicio de acuerdo
+con los requerimientos proporcionados.
+</span>
+
+</div>
+
+</div>
+
+
+<div class="payment-step">
+
+<div class="payment-step-number">
+3
+</div>
+
+<div>
+
+<strong>
+50% al finalizar
+</strong>
+
+<span>
+El saldo restante se realiza al finalizar
+y entregar el trabajo.
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     TOOLS
+========================================================= -->
+
+<section class="tools">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+Herramientas
+</div>
+
+<h2>
+Tecnología para analizar tus datos
+</h2>
+
+<p>
+Trabajamos con herramientas estadísticas y de procesamiento
+según las necesidades de cada proyecto.
+</p>
+
+</div>
+
+
+<div class="tools-grid">
+
+<div class="tool reveal">
+<div class="tool-icon">📊</div>
+<strong>SPSS</strong>
+</div>
+
+<div class="tool reveal">
+<div class="tool-icon">R</div>
+<strong>R</strong>
+</div>
+
+<div class="tool reveal">
+<div class="tool-icon">🐍</div>
+<strong>Python</strong>
+</div>
+
+<div class="tool reveal">
+<div class="tool-icon">📗</div>
+<strong>Excel</strong>
+</div>
+
+<div class="tool reveal">
+<div class="tool-icon">🗺️</div>
+<strong>QGIS</strong>
+</div>
+
+<div class="tool reveal">
+<div class="tool-icon">🗄️</div>
+<strong>SQL</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY
+========================================================= -->
+
+<section class="why">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+STATDATA
+</div>
+
+<h2>
+¿Por qué trabajar con nosotros?
+</h2>
+
+</div>
+
+
+<div class="why-grid">
+
+
+<div class="why-card reveal">
+
+<i>🎯</i>
+
+<h3>
+Trabajo personalizado
+</h3>
+
+<p>
+Cada proyecto se revisa de acuerdo con
+sus objetivos y requerimientos.
+</p>
+
+</div>
+
+
+<div class="why-card reveal">
+
+<i>🔎</i>
+
+<h3>
+Resultados revisados
+</h3>
+
+<p>
+Revisamos tablas, resultados y procedimientos
+antes de la entrega.
+</p>
+
+</div>
+
+
+<div class="why-card reveal">
+
+<i>💬</i>
+
+<h3>
+Explicación clara
+</h3>
+
+<p>
+Cuando lo requieras, explicamos el procedimiento
+para que puedas comprender tus resultados.
+</p>
+
+</div>
+
+
+<div class="why-card reveal">
+
+<i>🔐</i>
+
+<h3>
+Confidencialidad
+</h3>
+
+<p>
+Trabajamos responsablemente con la información
+que nos proporcionas.
+</p>
+
+</div>
+
+
+<div class="why-card reveal">
+
+<i>📚</i>
+
+<h3>
+Adaptación universitaria
+</h3>
+
+<p>
+Nos adaptamos a las indicaciones de tu universidad,
+docente o asesor.
+</p>
+
+</div>
+
+
+<div class="why-card reveal">
+
+<i>🇵🇪</i>
+
+<h3>
+STATDATA-Perú
+</h3>
+
+<p>
+Atención orientada a estudiantes e investigadores
+en el contexto académico peruano.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+
+<section class="testimonials">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+Experiencias
+</div>
+
+<h2>
+Lo que nuestros clientes podrán decir
+</h2>
+
+</div>
+
+
+<div class="demo">
+⚠️ Testimonios demostrativos. Reemplázalos por testimonios reales.
+</div>
+
+
+<div class="testimonial-grid">
+
+
+<div class="testimonial reveal">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“Me ayudaron a entender cómo presentar
+mis resultados estadísticos y organizar
+las tablas de mi investigación.”
+</p>
+
+<div class="author">
+
+<div class="avatar">
+E
+</div>
+
+<div>
+
+<strong>
+Testimonio demostrativo
+</strong>
+
+<span>
+Estudiante universitario
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="testimonial reveal">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“El procedimiento fue explicado de forma
+clara y pude comprender mejor mis resultados.”
+</p>
+
+<div class="author">
+
+<div class="avatar">
+T
+</div>
+
+<div>
+
+<strong>
+Testimonio demostrativo
+</strong>
+
+<span>
+Tesista
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="testimonial reveal">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“Me orientaron con el análisis de mi
+instrumento y la interpretación de los resultados.”
+</p>
+
+<div class="author">
+
+<div class="avatar">
+I
+</div>
+
+<div>
+
+<strong>
+Testimonio demostrativo
+</strong>
+
+<span>
+Investigador
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUOTE
+========================================================= -->
+
+<section class="quote" id="cotizacion">
+
+<div class="container quote-grid">
+
+
+<div class="reveal">
+
+<div class="eyebrow" style="color:#67e8f9">
+Cotización
+</div>
+
+<h2>
+Cuéntanos qué necesitas.
+</h2>
+
+<p>
+Envíanos tus indicaciones, una foto de tu tarea,
+tu base de datos o el avance de tu investigación.
+</p>
+
+
+<div class="contact-list">
+
+<div>
+📱
++51 995 649 525
+</div>
+
+<div>
+📧
+statdatagm18@gmail.com
+</div>
+
+<div>
+🇵🇪
+STATDATA-Perú
+</div>
+
+<div>
+💳
+Pago 50/50
+</div>
+
+</div>
+
+</div>
+
+
+<form class="form reveal" id="quoteForm">
+
+
+<div class="form-row">
+
+<div class="group">
+
+<label>
+NOMBRE
+</label>
+
+<input
+id="name"
+type="text"
+placeholder="Tu nombre"
+required>
+
+</div>
+
+
+<div class="group">
+
+<label>
+WHATSAPP
+</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="+51..."
+required>
+
+</div>
+
+</div>
+
+
+<div class="group">
+
+<label>
+SERVICIO
+</label>
+
+<select id="service" required>
+
+<option value="">
+Selecciona un servicio
+</option>
+
+<option>
+Tareas y trabajos estadísticos
+</option>
+
+<option>
+Exámenes de Estadística
+</option>
+
+<option>
+Tesis de Pregrado
+</option>
+
+<option>
+Validez y confiabilidad
+</option>
+
+<option>
+Trabajo de investigación
+</option>
+
+<option>
+Análisis estadístico
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+DETALLES
+</label>
+
+<textarea
+id="message"
+placeholder="Cuéntanos qué necesitas..."></textarea>
+
+</div>
+
+
+<button
+class="btn btn-primary"
+style="width:100%"
+type="submit">
+
+📱 Enviar a WhatsApp
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section class="faq" id="faq">
+
+<div class="container">
+
+<div class="section-header reveal">
+
+<div class="eyebrow">
+Preguntas frecuentes
+</div>
+
+<h2>
+¿Tienes alguna duda?
+</h2>
+
+</div>
+
+
+<div class="faq-list">
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Cuánto cuesta una tarea estadística?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Las tareas y trabajos estadísticos tienen un precio
+base desde S/ 10. El costo exacto depende de la
+cantidad y dificultad de los ejercicios.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Cuánto cuesta una tesis?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+La asesoría para tesis parte desde S/ 30,
+el análisis estadístico desde S/ 70 y los paquetes
+de tesis desde S/ 200. El precio final se cotiza
+según el proyecto.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Realizan V de Aiken?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Sí. Trabajamos con evaluación de expertos,
+V de Aiken, Alfa de Cronbach, Omega de McDonald
+e interpretación de los resultados.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Trabajan con SPSS?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Sí. Podemos trabajar con bases de datos y
+procedimientos estadísticos en SPSS, además
+de otras herramientas según el proyecto.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Cómo se realiza el pago?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+La modalidad indicada por STATDATA es 50/50:
+50% para iniciar y 50% al finalizar y entregar
+el trabajo.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+¿Cómo solicito una cotización?
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Puedes completar el formulario de esta página
+o escribir directamente al WhatsApp
++51 995 649 525.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+
+<div>
+
+<div class="footer-logo">
+
+STAT<span>DATA</span>
+
+</div>
+
+<p class="footer-description">
+
+Estadística • Investigación • Asesoría Académica
+
+<br><br>
+
+STATDATA-Perú ayuda a transformar datos,
+resultados e investigaciones en información
+clara y útil.
+
+</p>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>
+Servicios
+</h4>
+
+<ul>
+
+<li>
+<a href="#servicios">
+Tareas estadísticas
+</a>
+</li>
+
+<li>
+<a href="#servicios">
+Tesis
+</a>
+</li>
+
+<li>
+<a href="#servicios">
+Instrumentos
+</a>
+</li>
+
+<li>
+<a href="#servicios">
+Investigación
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>
+Información
+</h4>
+
+<ul>
+
+<li>
+<a href="#precios">
+Precios
+</a>
+</li>
+
+<li>
+<a href="#faq">
+Preguntas frecuentes
+</a>
+</li>
+
+<li>
+<a href="#analisis">
+Herramientas
+</a>
+</li>
+
+<li>
+<a href="#cotizacion">
+Cotización
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>
+Contacto
+</h4>
+
+<ul>
+
+<li>
+<a href="https://wa.me/51995649525"
+target="_blank">
+
+WhatsApp
+
+</a>
+</li>
+
+<li>
+<a href="mailto:statdatagm18@gmail.com">
+
+Correo
+
+</a>
+</li>
+
+<li>
+<a href="#cotizacion">
+
+Solicitar cotización
+
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<span>
+© 2026 STATDATA-Perú
+</span>
+
+<span>
+Estadística • Investigación • Asesoría Académica
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- =========================================================
+     WHATSAPP
+========================================================= -->
+
+<a
+href="https://wa.me/51995649525"
+target="_blank"
+class="whatsapp"
+aria-label="WhatsApp">
+
+☎
+
+</a>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
+</button>
+
+
+<div class="modal-icon" id="modalIcon">
+📊
+</div>
+
+
+<h2 id="modalTitle">
+Servicio
+</h2>
+
+
+<p id="modalDescription">
+Descripción.
+</p>
+
+
+<ul
+class="modal-list"
+id="modalList">
+</ul>
+
+
+<a
+href="#cotizacion"
+onclick="closeModal()"
+class="btn btn-primary"
+style="width:100%">
+
+Solicitar este servicio →
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+    },700);
+
+});
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+const navbar =
+document.getElementById("navbar");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>50){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menu =
+document.getElementById("menu");
+
+const navLinks =
+document.getElementById("navLinks");
+
+menu.addEventListener("click",()=>{
+
+    navLinks.classList.toggle("active");
+
+});
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+const revealObserver =
+new IntersectionObserver(
+entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+        }
+
+    });
+
+},
+{
+    threshold:.12
+});
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+
+    revealObserver.observe(el);
+
+});
+
+
+/* =========================================================
+   CALCULATOR
+========================================================= */
+
+function calculateData(){
+
+    const input =
+    document
+    .getElementById("numbersInput")
+    .value;
+
+    const values =
+    input
+    .split(",")
+    .map(x=>parseFloat(x.trim()))
+    .filter(x=>!isNaN(x));
+
+
+    if(values.length===0){
+
+        alert(
+            "Ingresa números separados por comas."
+        );
+
+        return;
+
+    }
+
+
+    values.sort((a,b)=>a-b);
+
+
+    const sum =
+    values.reduce(
+        (a,b)=>a+b,
+        0
+    );
+
+
+    const mean =
+    sum / values.length;
+
+
+    let median;
+
+    const middle =
+    Math.floor(values.length/2);
+
+
+    if(values.length%2===0){
+
+        median =
+        (
+            values[middle-1]
+            +
+            values[middle]
+        )/2;
+
+    }else{
+
+        median =
+        values[middle];
+
+    }
+
+
+    document
+    .getElementById("mean")
+    .textContent =
+    mean.toFixed(2);
+
+
+    document
+    .getElementById("median")
+    .textContent =
+    median.toFixed(2);
+
+
+    document
+    .getElementById("min")
+    .textContent =
+    values[0];
+
+
+    document
+    .getElementById("max")
+    .textContent =
+    values[values.length-1];
+
+}
+
+
+/* =========================================================
+   SERVICE DATA
+========================================================= */
+
+const services={
+
+tareas:{
+
+icon:"📊",
+
+title:"Tareas y trabajos estadísticos",
+
+description:
+"Te brindamos apoyo en ejercicios, análisis estadístico, tablas, gráficos e interpretación de resultados.",
+
+items:[
+
+"Trabajo personalizado",
+
+"Resultados claros y revisados",
+
+"Explicación del procedimiento cuando lo requieras",
+
+"Tablas y gráficos",
+
+"Precio base desde S/ 10"
+
+]
+
+},
+
+
+examenes:{
+
+icon:"📝",
+
+title:"Exámenes de Estadística",
+
+description:
+"Apoyo en la resolución y explicación de ejercicios de estadística, probabilidad, inferencia, pruebas de hipótesis, correlación y regresión.",
+
+items:[
+
+"Procedimiento paso a paso",
+
+"Resultados revisados",
+
+"Atención personalizada",
+
+"Estadística y probabilidad",
+
+"Inferencia y pruebas de hipótesis",
+
+"Precio base desde S/ 15"
+
+]
+
+},
+
+
+tesis:{
+
+icon:"🎓",
+
+title:"Tesis de Pregrado",
+
+description:
+"Te acompañamos en el desarrollo y análisis de tu investigación de acuerdo con los requerimientos de tu universidad y asesor.",
+
+items:[
+
+"Metodología y operacionalización",
+
+"Matriz de consistencia",
+
+"Validez y confiabilidad",
+
+"Análisis estadístico",
+
+"Resultados, tablas y gráficos",
+
+"APA 7.ª edición",
+
+"Revisión y levantamiento de observaciones",
+
+"Asesoría desde S/ 30",
+
+"Análisis estadístico desde S/ 70",
+
+"Paquetes desde S/ 200"
+
+]
+
+},
+
+
+instrumentos:{
+
+icon:"🔬",
+
+title:"Validez y Confiabilidad de Instrumentos",
+
+description:
+"Apoyo en la evaluación estadística de instrumentos utilizados en investigaciones.",
+
+items:[
+
+"Juicio de expertos",
+
+"V de Aiken",
+
+"Alfa de Cronbach",
+
+"Omega de McDonald",
+
+"Análisis de resultados",
+
+"Interpretación",
+
+"Precio base desde S/ 35"
+
+]
+
+},
+
+
+investigacion:{
+
+icon:"📚",
+
+title:"Trabajos de Investigación Universitarios",
+
+description:
+"Apoyo personalizado para desarrollar tu investigación de acuerdo con las indicaciones de tu docente y universidad.",
+
+items:[
+
+"Introducción",
+
+"Metodología",
+
+"Resultados",
+
+"Discusión",
+
+"Conclusiones",
+
+"Recomendaciones",
+
+"APA 7.ª edición",
+
+"Análisis estadístico",
+
+"Precio base desde S/ 40"
+
+]
+
+},
+
+
+analisis:{
+
+icon:"📈",
+
+title:"Análisis Estadístico",
+
+description:
+"Procesamiento y análisis estadístico de bases de datos para proyectos académicos y de investigación.",
+
+items:[
+
+"Estadística descriptiva",
+
+"Pruebas de normalidad",
+
+"Pruebas de hipótesis",
+
+"Correlación",
+
+"Regresión",
+
+"Comparación de grupos",
+
+"Tablas y gráficos",
+
+"Interpretación",
+
+"Precio base desde S/ 70"
+
+]
+
+}
+
+};
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+function openService(type){
+
+    const data =
+    services[type];
+
+    document
+    .getElementById("modalIcon")
+    .textContent =
+    data.icon;
+
+
+    document
+    .getElementById("modalTitle")
+    .textContent =
+    data.title;
+
+
+    document
+    .getElementById("modalDescription")
+    .textContent =
+    data.description;
+
+
+    const list =
+    document
+    .getElementById("modalList");
+
+
+    list.innerHTML="";
+
+
+    data.items.forEach(item=>{
+
+        const li =
+        document.createElement("li");
+
+        li.textContent=item;
+
+        list.appendChild(li);
+
+    });
+
+
+    document
+    .getElementById("modal")
+    .classList.add("show");
+
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeModal(){
+
+    document
+    .getElementById("modal")
+    .classList.remove("show");
+
+    document.body.style.overflow="";
+
+}
+
+
+document
+.getElementById("modal")
+.addEventListener("click",function(e){
+
+    if(e.target===this){
+
+        closeModal();
+
+    }
+
+});
+
+
+document.addEventListener("keydown",e=>{
+
+    if(e.key==="Escape"){
+
+        closeModal();
+
+    }
+
+});
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+document
+.querySelectorAll(".faq-question")
+.forEach(question=>{
+
+    question.addEventListener("click",()=>{
+
+        const item =
+        question.parentElement;
+
+
+        document
+        .querySelectorAll(".faq-item")
+        .forEach(other=>{
+
+            if(other!==item){
+
+                other.classList.remove("active");
+
+            }
+
+        });
+
+
+        item.classList.toggle("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   WHATSAPP FORM
+========================================================= */
+
+document
+.getElementById("quoteForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+
+    const name =
+    document
+    .getElementById("name")
+    .value.trim();
+
+
+    const phone =
+    document
+    .getElementById("phone")
+    .value.trim();
+
+
+    const service =
+    document
+    .getElementById("service")
+    .value;
+
+
+    const message =
+    document
+    .getElementById("message")
+    .value.trim();
+
+
+    const whatsapp =
+    "51995649525";
+
+
+    const text =
+
+    `Hola STATDATA 👋%0A%0A` +
+
+    `Quiero solicitar una cotización.%0A%0A` +
+
+    `👤 Nombre: ${encodeURIComponent(name)}%0A` +
+
+    `📱 WhatsApp: ${encodeURIComponent(phone)}%0A` +
+
+    `📊 Servicio: ${encodeURIComponent(service)}%0A%0A` +
+
+    `📝 Detalles:%0A${encodeURIComponent(message)}`;
+
+
+    window.open(
+        `https://wa.me/${whatsapp}?text=${text}`,
+        "_blank"
+    );
+
+});
+
+
+</script>
+
+</body>
+</html>
